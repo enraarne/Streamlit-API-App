@@ -50,7 +50,7 @@ else:
     st.session_state[uu] = new
     uu = new
 
-st.write("DEBUG: ", uu)
+#st.write("DEBUG: ", uu)
 
 
 #### Add sidebar ####
@@ -68,10 +68,9 @@ st.sidebar.markdown("""Denne web appen benytter en server-side buffer (cashe) so
         på nytt eller legger ned fanen. Hvis du ønsker at kallene skal være lagret mellom økter og for alle bruker,  trykk på radioknappen \
             nedenfor som er markert 'Global' """)
 mode = st.sidebar.radio("**Modus**", options=('Lokal', 'Global'))
-st.sidebar.write(mode)
 if mode == 'Global':
     uu = 'Global'
-    st.sidebar.write("DEBUG: ", uu)
+    #st.sidebar.write("DEBUG: ", uu)
 st.sidebar.markdown("""Hvis du ønsker å tømme bufferen, kan du enten trykk på knappen nedenfor eller gå inn på "hambugermenyen" øverst \
     til høyre og trykke på "clear cashe". Merk at du da vil tømme bufferen for alle brukere av tjenesten.""")
 if st.sidebar.button("Tøm bufferen", type="primary"):
@@ -122,6 +121,7 @@ st.write(f"""Denne hastighetstesten benytter seg av en spørring med et tilfeldi
     organisasjonsnummer. Testen måler både tiden det tar å laste ned header og tiden det tar å laste ned både header \
         og body (alle rader).""")
 
+
 slider_2_1 = st.slider("**Velg antall kall mot APIet**", min_value=10, max_value=100, value=50, key="slider_2_1")
 
 # We only run hastighetstest_2_1 if button is pushed or button_2_1 is in session_state
@@ -129,7 +129,7 @@ if st.button("Kjør hastighetstest 2.1", type="primary") or 'button_2_1' in st.s
     if 'button_2_1' not in st.session_state:
         st.session_state['button_2_1'] = True
 
-    df1, query = speed_test_1(slider_2_1)
+    df1, query = speed_test_1(slider_2_1, uu)
     st.write(f"""Figuren nedenfor er et resultat av en spørring som benytter følgende spørrestreng: <b>filter={query}</b>. \
         Totalt henter spørringen ned <b>{df1["Size"].iloc[0]} rader</b>.""", unsafe_allow_html=True)
     #st.text("")
@@ -152,7 +152,7 @@ slider_2_2 = st.slider("**Velg antall kall mot APIet**", min_value=10, max_value
 if st.button("Kjør hastighetstest 2.2", type="primary") or 'button_2_2' in st.session_state:
     if 'button_2_2' not in st.session_state:
         st.session_state['button_2_2'] = True
-    df2 = speed_test_2(slider_2_2)
+    df2 = speed_test_2(slider_2_2, uu)
     speed_test_2_print(df2)
 
 
@@ -170,8 +170,8 @@ st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmo
 if st.button("Kjør hastighetstest 2.3", type="primary") or 'button_2_3' in st.session_state:
     if 'button_2_3' not in st.session_state:
         st.session_state['button_2_3'] = True
-    df2 = speed_test_2(slider_2_2)
-    result1, result2 = speed_test_3(df2)
+    df2 = speed_test_2(slider_2_2, uu)
+    result1, result2 = speed_test_3(df2, uu)
     speed_test_3_print(result1, result2, df2)
 
 
@@ -189,7 +189,7 @@ slider_2_4 = st.slider("**Velg antall kall mot APIet**", min_value=20, max_value
 if st.button("Kjør hastighetstest 2.4", type="primary") or 'button_2_4' in st.session_state:
     if 'button_2_4' not in st.session_state:
         st.session_state['button_2_4'] = True
-    df4 = speed_test_4(slider_2_4)
+    df4 = speed_test_4(slider_2_4, uu)
     speed_test_4_print(df4)
 
 st.markdown("***")
@@ -230,7 +230,7 @@ def innholdstest_4_1():
     
     if 'button_4_1' not in st.session_state:
         st.session_state['button_4_1'] = True
-    test_liste = kolonne_test()
+    test_liste = kolonne_test(uu)
     kolonne_test_print(test_liste)
 
 

@@ -26,7 +26,7 @@ sns.set_palette(sns.color_palette(colors))
 
 
 @st.experimental_memo()
-def speed_test_1(slider_2_1):
+def speed_test_1(slider_2_1: int, uu: str):
     
     orgnummer = get_orgnummer()
     fylker    = get_fylker()
@@ -91,7 +91,7 @@ def speed_test_1_print(query, df):
 
 
 @st.experimental_memo()
-def speed_test_2(slider_2_2):
+def speed_test_2(slider_2_2:int, uu: str):
     time_list = []
     orgnummer = get_orgnummer()
 
@@ -142,7 +142,7 @@ def speed_test_2_print(df):
 
 
 @st.experimental_memo()
-def speed_test_3(df):
+def speed_test_3(df, uu:str):
     # Regresjonsanalyse
 
     Y = df['Time_request']
@@ -183,7 +183,7 @@ def speed_test_3_print(result1, result2, df):
     st.text("")
 
 @st.experimental_memo()
-def speed_test_4(slider_2_4):
+def speed_test_4(slider_2_4:int, uu:str):
     # Progress bar
     speed_4_bar = st.progress(0.0)
     complete = 0.0

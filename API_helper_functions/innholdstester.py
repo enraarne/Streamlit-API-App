@@ -92,7 +92,7 @@ kolonne_dict = {
 }
 
 @st.experimental_memo()
-def kolonne_test():
+def kolonne_test(uu:str):
 
     test_liste = []
     
