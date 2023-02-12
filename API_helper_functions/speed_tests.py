@@ -63,9 +63,14 @@ def speed_test_1(slider_2_1: int, uu: str):
 
 def speed_test_1_print(query, df):
     #df = first_timer(query)
+
     st.text("")
     plt.rc('font',family=""" "Source Sans Pro", sans-serif """)
     plt.figure(figsize=(22, 10))
+
+    # Font ticks size
+    plt.yticks(fontsize=12)
+    plt.xticks(fontsize=12)
 
     plt.text(5.5, 1.95, f'Antall rader i "response body": {df["Size"].iloc[0]}', fontsize=18,
             verticalalignment='top')
@@ -133,6 +138,10 @@ def speed_test_2_print(df):
     blue_patch = mpatches.Patch(color="#51698F", label='Tid forløpt til header mottatt')
     plt.legend(handles=[yellow_patch, blue_patch], prop={'size': 14}, loc="upper right")
 
+    # Font ticks size
+    plt.yticks(fontsize=12)
+    plt.xticks(fontsize=12)
+
     plt.title("Figur 2.2: Responstid for API med randomiserte org.nummere", size=26, pad=16)
     plt.xlabel('GET request nummer', size=18)
     plt.ylabel('Tid i sekunder', size=18)
@@ -169,6 +178,10 @@ def speed_test_3_print(result1, result2, df):
     yellow_patch = mpatches.Patch(color="#8f5169", label='Total kjøretid')
     blue_patch = mpatches.Patch(color="#51698F", label='Tid forløpt til header mottatt')
     plt.legend(handles=[yellow_patch, blue_patch], prop={'size': 14}, loc="upper right")
+
+    # Font ticks size
+    plt.yticks(fontsize=12)
+    plt.xticks(fontsize=12)
 
     plt.title("Figur 2.3: Responstid som en funksjon av antall rader", size=26, pad=16)
     plt.xlabel('Antall rader', size=18)
@@ -211,6 +224,11 @@ def speed_test_4(slider_2_4:int, uu:str):
 def speed_test_4_print(df):
     st.text("")
     plt.figure(figsize=(22, 10))
+    
+    # Font ticks size
+    plt.yticks(fontsize=12)
+    plt.xticks(fontsize=12)
+
     plt.xlabel('Antall rader', size=18)
     plt.ylabel('Tid i sekunder', size=18)
     plt.ylim(0, df['Time'].max() + .35*df['Time'].max())
