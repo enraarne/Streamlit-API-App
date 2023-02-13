@@ -124,7 +124,47 @@ def kolonne_test_print(test_liste):
 
     for element in test_liste:
         if element[2] == "Riktig":
-            st.write(f"Tabell: {element[0]} {element[1]} Resultat: **:<span style='color:#327E6F'>{element[2]}</span>**", unsafe_allow_html=True) #{api == fasit}
+            st.write(f"Tabell: {element[0]} {element[1]} **:<span style='color:#327E6F'> {element[2]}</span>**", unsafe_allow_html=True) #{api == fasit}
         else:
-            st.write(f"Tabell: {element[0]} {element[1]} Resultat: **:red[{element[2]}]**")
+            st.write(f"Tabell: {element[0]} {element[1]} **:<span style='color:#880808'> {element[2]}</span>**", unsafe_allow_html=True)
+    st.write("")
+
+
+
+@st.experimental_memo()
+def irene_prikking(uu:str):
+    url   = "https://api.udir-statistikkbanken.no/api/rest/v2/Eksport/149/data"   
+    query = "Eierformkode(3)_EierformNivaa(1)_EnhetID(30058)_EnhetNivaa(4)_GruppeNivaa(0)_KjoennNivaa(0)_KommuneKode(5001)_SpoersmaalID(456)_TemaNivaa(1)_TidID(202112)_TrinnKode(10)" # _SkoleEierNivaa(0)_ [FAIL] _TrinnKode(10) [NONE] Uprikket IS NULL  EierformKode(3)_ [NONE]
+
+    resultat = eksport_data(url=url, query=query)
+    df = pd.read_json(resultat.text)
+    
+    test_list = []
+    
+    if df[df.SvaralternativKode == '4']['Score'].to_list()[0]              == '*': test_list.append(True) 
+    else: test_list.append(False)
+    
+    if df[df.SvaralternativKode == '4']['Standardavvik'].to_list()[0]      == '*': test_list.append(True)
+    else: test_list.append(False)
+    
+    if df[df.SvaralternativKode == '4']['AntallBesvart'].to_list()[0]      == '*': test_list.append(True)
+    else: test_list.append(False)  
+    
+    if df[df.SvaralternativKode == '4']['AndelBesvart'].to_list()[0]       == '*': test_list.append(True)
+    else: test_list.append(False)
+        
+    return test_list
+
+
+def irene_prikking_printer(test_liste):
+    st.write("")
+    st.write("**Test av Irene-prikking:**\n") 
+    
+    tekst_liste = ["Score skal være prikket", "Standardavvik skal være prikket", "AntallBesvart skal være prikket", "AndelBesvart skal være prikket"]
+
+    for i, e in zip(tekst_liste, test_liste):
+        if e == True:
+            st.write(f"{i} **:<span style='color:#327E6F'> Riktig</span>**", unsafe_allow_html=True) #{api == fasit}
+        else:
+            st.write(f"{i}  **:<span style='color:#880808'> Feil</span>**", unsafe_allow_html=True) ###**:red[' Feil']**")
     st.write("")

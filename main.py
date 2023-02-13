@@ -19,8 +19,8 @@ import secrets
 
 # streamlit
 import streamlit as st
-st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_page_config(layout="wide", page_title='USS API-tester', page_icon = "img/api-konsoll-logo.png")
+st.set_option('deprecation.showPyplotGlobalUse', False)
 import streamlit.components.v1 as components  # Import Streamlit
 
 # Import of funktions from own modules 
@@ -28,7 +28,8 @@ from API_helper_functions.helper_functions import eksporttabeller, eksport_forma
 from API_helper_functions.load_data import get_orgnummer, get_fylker
 from API_helper_functions.speed_tests import speed_test_1, speed_test_1_print, speed_test_2, speed_test_2_print, \
     speed_test_3, speed_test_3_print, speed_test_4, speed_test_4_print
-from API_helper_functions.innholdstester import kolonne_test, kolonne_test_print, kolonne_dict
+from API_helper_functions.innholdstester import kolonne_test, kolonne_test_print, kolonne_dict, irene_prikking, irene_prikking_printer
+from API_helper_functions.paginering import paginering, paginering_printer
 
 
 #### Remove red/orange header line ####
@@ -209,9 +210,12 @@ st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmo
 
 slider_3_1 = st.slider("**Velg antall kall mot APIet**", min_value=1, max_value=50, value=10, key="slider_3_1")
 
-if st.button("Kjør hastighetstest 3.1", type="primary") or 'button_3_1' in st.session_state:
+if st.button("Kjør pagineringstest 3.1", type="primary") or 'button_3_1' in st.session_state:
     if 'button_3_1' not in st.session_state:
         st.session_state['button_3_1'] = True
+
+    response_dict = paginering(slider_3_1, uu)
+    paginering_printer(response_dict)
 
 
 st.markdown("***")
@@ -281,8 +285,12 @@ col3, col4 = st.columns(2)
 
 with col3:
     if st.button("Kjør innholdstest 4.2", type="primary") or 'button_4_1' in st.session_state:
-        pass
-        #innholdstest_4_2()
+        
+        if 'button_4_2' not in st.session_state:
+            st.session_state['button_4_2'] = True
+        
+        resultat = irene_prikking(uu)
+        irene_prikking_printer(resultat)
 
 with col4:
     st.code(sql_code) # expanded=False
