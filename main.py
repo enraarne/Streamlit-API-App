@@ -19,7 +19,7 @@ import secrets
 
 # streamlit
 import streamlit as st
-st.set_page_config(layout="wide", page_title='USS API-tester', page_icon = "img/api-konsoll-logo.png")
+st.set_page_config(layout="wide", page_title='USS API-tester', page_icon = "img/api-konsoll-logo.ico")
 st.set_option('deprecation.showPyplotGlobalUse', False)
 import streamlit.components.v1 as components  # Import Streamlit
 
