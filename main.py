@@ -81,10 +81,10 @@ if st.sidebar.button("Tøm bufferen", type="primary"):
 
 #### Header and Introduction ####
 st.title("Testredskaper for Statistikksystemets åpne API")
-st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor \
-        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident\
-            , sunt in culpa qui officia deserunt mollit anim id est laborum.")
+st.write("Denne web appen tilbyr fire forskjellige typer tester - funksjonstester, hastighetstester, pagineringstester og innholdstester. \
+    I de fleste tilfeller kan du selv stille inn hvor omfattende du ønsker at testene skal være, f.eks. ved å sette opp antall kall mot API-et. \
+        Desto flere kall mot API-et, desto bedre datagrunnlag for å vurdere ytelsen. Men desto flere kall mot API-et, desto lengre tid \
+            tar det å gjennomføre testene.")
 st.markdown("***")
 
 
@@ -92,7 +92,8 @@ st.markdown("***")
 st.markdown("""<h2 style="background-color: RGB(170 187 204); padding: 10px;">1. Funksjonstest av utvikler- og data-APIer</h2>"""\
     , unsafe_allow_html=True)
 #st.header("1. Funksjonstest av utvikler- og data-APIer")
-st.write(f"""Funksjonstestene test om API-et er operativt. Det tester alle seks utivikler-API-ene og data-API-et""")            
+st.write(f"""Funksjonstestene tester om API-ene er operative. De tester alle seks utivikler-API-ene og data-API-et. \
+    For hvert av API-ene gjennonmføres det en test som ser om det får et svar med status kode 200 og at svaret mottas innen ett sekund.""")            
 
 #st.markdown("***")
 
@@ -107,10 +108,9 @@ st.markdown("***")
 st.markdown("""<h2 style="background-color: RGB(170 187 204);padding: 10px;">2. Hastighetstester av APIet</h2>"""\
     , unsafe_allow_html=True)
 #st.header("2. Hastighetstester av APIet") 
-st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor \
-        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident\
-            , sunt in culpa qui officia deserunt mollit anim id est laborum.")
+st.write("Denne web appen har fire hastighetstester, som på forskjellig måte måler responsetiden til det åpne API-et. De fleste testene \
+    tillater at brukeren bestemmer antall kall som gjøres mot API-et. Desto flere kall mot API-et, desto lengre tid tar testen. Velger \
+        man få kall mot API-et kan tilfeldige variasjoner i responsetid dominere.")
 
 #st.markdown("***")
 
@@ -120,7 +120,8 @@ st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmo
 st.subheader("2.1 Test av responstid med én tilfeldig generert spørring")
 st.write(f"""Denne hastighetstesten benytter seg av en spørring med et tilfeldig trukket fylke og et tilfeldig trukket \
     organisasjonsnummer. Testen måler både tiden det tar å laste ned header og tiden det tar å laste ned både header \
-        og body (alle rader).""")
+        og body (dvs. alle rader). Ettersom samme spørring gjentas flere ganger, vil responsetiden påvirkes av caching (buffering) \
+            i API-et. Er caching satt på, vil man vente at første spørring tar betraktlig lengre tid enn senere spørringer.""")
 
 
 slider_2_1 = st.slider("**Velg antall kall mot APIet**", min_value=10, max_value=100, value=50, key="slider_2_1")
@@ -142,10 +143,11 @@ if st.button("Kjør hastighetstest 2.1", type="primary") or 'button_2_1' in st.s
 
 #### Hastighetstest 2.2 ####
 st.subheader("2.2 Test av responstid med tilfeldig trekte organisasjonsnummer")
-st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore \
-    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint \
-            occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+st.write(f"""Denne hastighetstesten benytter seg av en spørring med et tilfeldig trukket \
+    organisasjonsnummer. Testen måler både tiden det tar å laste ned header og tiden det tar å laste ned både header \
+        og body (dvs. alle rader). Ettersom samme spørring gjentas flere ganger med forskjellige organisasjonsnummer, \
+            vil responsetiden ikke påvirkes av caching (buffering) i API-et. Om caching er satt på eller ikke skal ikke påvirke \
+                tiden det tar å gjennomføre spørringene.""")
 
 slider_2_2 = st.slider("**Velg antall kall mot APIet**", min_value=10, max_value=100, value=50, key="slider_2_2")
 
@@ -160,11 +162,11 @@ if st.button("Kjør hastighetstest 2.2", type="primary") or 'button_2_2' in st.s
 
 #### Hastighetstest 2.3 ####
 st.subheader("2.3 Responstid som en funksjon av antall rader")
-st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore \
-    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint \
-            occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-
+st.write("Denne hastighetstesten benytter seg av datagrunnlaget fra forrige test (Hastighetstest 2.2.). Testen gjennomfører en \
+    regresjonsanalyse med responsetid som avhengig variabel og antall rader mottatt som uavhengig variabel. Denne testen \
+        gjennomføres både for tiden det tar å laste ned header og tiden det tar å laste ned både header og body (dvs. alle rader). \
+            Hensikten med testen er å se om det tar lengre tid å kjøre kall som etterspør mange rader enn få rader. Dette kan brukes \
+                som et element i en vurdering av om man har en hensiktsmessig størrelse på pagineringen.")
 
 
 # We only run hastighetstest_2_3 if button is pushed or button_2_3 is in session_state
@@ -179,10 +181,9 @@ if st.button("Kjør hastighetstest 2.3", type="primary") or 'button_2_3' in st.s
 
 #### Hastighetstest 2.4 ####
 st.subheader("2.4 Test av et tilfeldig utvalg APIer")
-st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore \
-    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint \
-            occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+st.write("Denne testen sammenligner hastigheten på de seks utvikler-API-ene og data-API-et. Hensikten med testen er å se om noen \
+    av API-ene skiller seg ut med hensyn til responshastighet. Man vil i utgangspunktet vente at data-API-et vil ha noe høyere \
+        responstid enn de andre API-ene. Denne hasighetstesten plukker API-er i tilfeldig rekkefølge.")
 
 
 slider_2_4 = st.slider("**Velg antall kall mot APIet**", min_value=20, max_value=100, value=50, key="slider_2_4")
@@ -203,10 +204,11 @@ st.markdown("""<h2 style="background-color: RGB(170 187 204); ;padding: 10px;">3
     , unsafe_allow_html=True)
 #st.header("3. Pagineringstester") 
 st.subheader("3.1 Test av et tilfeldig utvalg sider er identiske")
-st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore \
-    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint \
-            occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+st.write("Pagineringstesten gjør en spørring mot API-et med ett tilfeldig valgt Fylke og ett tilfeldig valgt organisasjonsnummer. \
+    Denne spørringen vi vanligvis generere en response som tar opp rundet 300 sider. Pagineringstesten gjør to kall mot samme sidenummer \
+        og sammenligner sidene og ser om de er identiske. Pagineringstesten gjentar denne prosedyren et spesifisert antall ganger. Hver \
+            gang trekker testen ut et nytt sidenummer. Pagineringstesten undersøker om sidene har samme antall rader, samme innhold i radene \
+                og at radene er organisert i samme rekkefølge")
 
 slider_3_1 = st.slider("**Velg antall kall mot APIet**", min_value=1, max_value=50, value=10, key="slider_3_1")
 
@@ -225,10 +227,10 @@ st.markdown("***")
 st.markdown("""<h2 style="background-color: RGB(170 187 204); ;padding: 10px;">4. Innholdstester</h2>"""\
     , unsafe_allow_html=True) 
 st.subheader("4.1 Test av kolonner og kolonnerekkefølge")
-st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore \
-    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint \
-            occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+st.write("Denne innholdstesten gjør spørringer mot alle de åtte tabellene. Deretter tester den om alle variabler som burde være med i \
+    de forskjellige tabellene er med. Testen undersøker også om varibalene opptrer i riktig rekkefølge. På siden av testen finner du \
+        en oversikt i JSON over alle variable som skal være med i de forskjellige tabellene. Det er denne JSON-en som brukes som \
+            sammenligningsgrunnlag.")
 
 def innholdstest_4_1():
     
@@ -249,10 +251,10 @@ with col2:
 
 
 st.subheader("4.2 Test av Irene-prikking")
-st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore \
-    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint \
-            occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+st.write("Irene-prikking eller Irene-fritatte rader er rader som ikke er prikket når man er pålogget. Disse radene skal vises som \
+    prikket i APIet. Hvis radene vises som noe annet enn prikket, er det en alvorlig feil. Ved siden av testen vises en SQL som \
+        benyttes som sammenligningsgrunnlag. SQL-en kan kopieres til utklipstavlen og kjøres i Statistikksystemet om man ønsker å \
+            forsikre seg om at man har et oppdatert sammenligningsgrunnlag.")
 
 
 sql_code = """
