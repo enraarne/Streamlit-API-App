@@ -80,7 +80,7 @@ if st.sidebar.button("Tøm bufferen", type="primary"):
 
 
 #### Header and Introduction ####
-st.title("Testredskaper for Statistikksystemets åpne API")
+st.title("Testredskaper for Statistikksystemets åpne API (v1.0)")
 st.write("Denne web appen tilbyr fire forskjellige typer tester - funksjonstester, hastighetstester, pagineringstester og innholdstester. \
     I de fleste tilfeller kan du selv stille inn hvor omfattende du ønsker at testene skal være, f.eks. ved å sette opp antall kall mot API-et. \
         Desto flere kall mot API-et, desto bedre datagrunnlag for å vurdere ytelsen. Men desto flere kall mot API-et, desto lengre tid \
@@ -92,8 +92,8 @@ st.markdown("***")
 st.markdown("""<h2 style="background-color: RGB(170 187 204); padding: 10px;">1. Funksjonstest av utvikler- og data-APIer</h2>"""\
     , unsafe_allow_html=True)
 #st.header("1. Funksjonstest av utvikler- og data-APIer")
-st.write(f"""Funksjonstestene tester om API-ene er operative. De tester alle seks utivikler-API-ene og data-API-et. \
-    For hvert av API-ene gjennonmføres det en test som ser om det får et svar med status kode 200 og at svaret mottas innen ett sekund.""")            
+st.write(f"""Funksjonstestene tester om API-ene er operative. De tester alle seks utvikler-API-ene og data-API-et. \
+    For hvert av API-ene gjennomføres det en test som ser om det får et svar med status kode 200 og at svaret mottas innen ett sekund.""")            
 
 #st.markdown("***")
 
@@ -108,9 +108,9 @@ st.markdown("***")
 st.markdown("""<h2 style="background-color: RGB(170 187 204);padding: 10px;">2. Hastighetstester av APIet</h2>"""\
     , unsafe_allow_html=True)
 #st.header("2. Hastighetstester av APIet") 
-st.write("Denne web appen har fire hastighetstester, som på forskjellig måte måler responsetiden til det åpne API-et. De fleste testene \
+st.write("Denne web appen har fire hastighetstester, som på forskjellig måte måler responstiden til det åpne API-et. De fleste testene \
     tillater at brukeren bestemmer antall kall som gjøres mot API-et. Desto flere kall mot API-et, desto lengre tid tar testen. Velger \
-        man få kall mot API-et kan tilfeldige variasjoner i responsetid dominere.")
+        man få kall mot API-et kan tilfeldige variasjoner i responstid prege utfallet.")
 
 #st.markdown("***")
 
@@ -120,8 +120,8 @@ st.write("Denne web appen har fire hastighetstester, som på forskjellig måte m
 st.subheader("2.1 Test av responstid med én tilfeldig generert spørring")
 st.write(f"""Denne hastighetstesten benytter seg av en spørring med et tilfeldig trukket fylke og et tilfeldig trukket \
     organisasjonsnummer. Testen måler både tiden det tar å laste ned header og tiden det tar å laste ned både header \
-        og body (dvs. alle rader). Ettersom samme spørring gjentas flere ganger, vil responsetiden påvirkes av caching (buffering) \
-            i API-et. Er caching satt på, vil man vente at første spørring tar betraktlig lengre tid enn senere spørringer.""")
+        og body (dvs. alle rader). Ettersom samme spørring gjentas flere ganger, vil responstiden påvirkes av caching (buffering) \
+            i API-et. Er caching satt på, vil man vente at første spørring tar betraktelig lengre tid enn senere spørringer.""")
 
 
 slider_2_1 = st.slider("**Velg antall kall mot APIet**", min_value=10, max_value=100, value=50, key="slider_2_1")
@@ -146,7 +146,7 @@ st.subheader("2.2 Test av responstid med tilfeldig trekte organisasjonsnummer")
 st.write(f"""Denne hastighetstesten benytter seg av en spørring med et tilfeldig trukket \
     organisasjonsnummer. Testen måler både tiden det tar å laste ned header og tiden det tar å laste ned både header \
         og body (dvs. alle rader). Ettersom samme spørring gjentas flere ganger med forskjellige organisasjonsnummer, \
-            vil responsetiden ikke påvirkes av caching (buffering) i API-et. Om caching er satt på eller ikke skal ikke påvirke \
+            vil responstiden ikke påvirkes av caching (buffering) i API-et. Om caching er satt på eller ikke, skal ikke påvirke \
                 tiden det tar å gjennomføre spørringene.""")
 
 slider_2_2 = st.slider("**Velg antall kall mot APIet**", min_value=10, max_value=100, value=50, key="slider_2_2")
@@ -163,7 +163,7 @@ if st.button("Kjør hastighetstest 2.2", type="primary") or 'button_2_2' in st.s
 #### Hastighetstest 2.3 ####
 st.subheader("2.3 Responstid som en funksjon av antall rader")
 st.write("Denne hastighetstesten benytter seg av datagrunnlaget fra forrige test (Hastighetstest 2.2.). Testen gjennomfører en \
-    regresjonsanalyse med responsetid som avhengig variabel og antall rader mottatt som uavhengig variabel. Denne testen \
+    regresjonsanalyse med responstid som avhengig variabel og antall rader mottatt som uavhengig variabel. Denne testen \
         gjennomføres både for tiden det tar å laste ned header og tiden det tar å laste ned både header og body (dvs. alle rader). \
             Hensikten med testen er å se om det tar lengre tid å kjøre kall som etterspør mange rader enn få rader. Dette kan brukes \
                 som et element i en vurdering av om man har en hensiktsmessig størrelse på pagineringen.")
@@ -205,10 +205,10 @@ st.markdown("""<h2 style="background-color: RGB(170 187 204); ;padding: 10px;">3
 #st.header("3. Pagineringstester") 
 st.subheader("3.1 Test av et tilfeldig utvalg sider er identiske")
 st.write("Pagineringstesten gjør en spørring mot API-et med ett tilfeldig valgt Fylke og ett tilfeldig valgt organisasjonsnummer. \
-    Denne spørringen vi vanligvis generere en response som tar opp rundet 300 sider. Pagineringstesten gjør to kall mot samme sidenummer \
+    Denne spørringen vi vanligvis generere en respons som tar opp rundet 300 sider. Pagineringstesten gjør to kall mot samme sidenummer \
         og sammenligner sidene og ser om de er identiske. Pagineringstesten gjentar denne prosedyren et spesifisert antall ganger. Hver \
             gang trekker testen ut et nytt sidenummer. Pagineringstesten undersøker om sidene har samme antall rader, samme innhold i radene \
-                og at radene er organisert i samme rekkefølge")
+                og at radene er organisert i samme rekkefølge.")
 
 slider_3_1 = st.slider("**Velg antall kall mot APIet**", min_value=1, max_value=50, value=10, key="slider_3_1")
 
@@ -228,8 +228,8 @@ st.markdown("""<h2 style="background-color: RGB(170 187 204); ;padding: 10px;">4
     , unsafe_allow_html=True) 
 st.subheader("4.1 Test av kolonner og kolonnerekkefølge")
 st.write("Denne innholdstesten gjør spørringer mot alle de åtte tabellene. Deretter tester den om alle variabler som burde være med i \
-    de forskjellige tabellene er med. Testen undersøker også om varibalene opptrer i riktig rekkefølge. På siden av testen finner du \
-        en oversikt i JSON over alle variable som skal være med i de forskjellige tabellene. Det er denne JSON-en som brukes som \
+    de forskjellige tabellene er med. Testen undersøker også om variablene opptrer i riktig rekkefølge. På siden av testen finner du \
+        en oversikt i JSON over alle variabler som skal være med i de forskjellige tabellene. Det er denne JSON-en som brukes som \
             sammenligningsgrunnlag.")
 
 def innholdstest_4_1():
@@ -253,7 +253,7 @@ with col2:
 st.subheader("4.2 Test av Irene-prikking")
 st.write("Irene-prikking eller Irene-fritatte rader er rader som ikke er prikket når man er pålogget. Disse radene skal vises som \
     prikket i APIet. Hvis radene vises som noe annet enn prikket, er det en alvorlig feil. Ved siden av testen vises en SQL som \
-        benyttes som sammenligningsgrunnlag. SQL-en kan kopieres til utklipstavlen og kjøres i Statistikksystemet om man ønsker å \
+        benyttes som sammenligningsgrunnlag. SQL-en kan kopieres til utklippstavlen og kjøres i Statistikksystemet om man ønsker å \
             forsikre seg om at man har et oppdatert sammenligningsgrunnlag.")
 
 
