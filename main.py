@@ -64,16 +64,16 @@ st.sidebar.markdown("[3. Pagineringstester](#3-pagineringstester)")
 st.sidebar.markdown("[4. Innholdstester](#4-innholdstester)")
 st.sidebar.markdown("")
 st.sidebar.markdown("**Buffer (cache):**")
-st.sidebar.markdown("""Denne web appen benytter en server-side buffer (cashe) som lagrer kall mot APIene. \
+st.sidebar.markdown("""Denne web appen benytter en server-side buffer (cache) som lagrer kall mot APIene. \
     Bufferen lagrer i utgangspunktet kun resultater av kall innen samme økt (session). Du avslutter en økt når du laster inn websiden \
-        på nytt eller legger ned fanen. Hvis du ønsker at kallene skal være lagret mellom økter og for alle bruker,  trykk på radioknappen \
+        på nytt eller legger ned fanen. Hvis du ønsker at kallene skal være lagret mellom økter og for alle brukere,  trykk på radioknappen \
             nedenfor som er markert 'Global' """)
 mode = st.sidebar.radio("**Modus**", options=('Lokal', 'Global'))
 if mode == 'Global':
     uu = 'Global'
     #st.sidebar.write("DEBUG: ", uu)
-st.sidebar.markdown("""Hvis du ønsker å tømme bufferen, kan du enten trykk på knappen nedenfor eller gå inn på "hambugermenyen" øverst \
-    til høyre og trykke på "clear cashe". Merk at du da vil tømme bufferen for alle brukere av tjenesten.""")
+st.sidebar.markdown("""Hvis du ønsker å tømme bufferen, kan du enten trykk på knappen nedenfor eller gå inn på "hamburgermenyen" øverst \
+    til høyre og trykke på "clear cache". Merk at du da vil tømme bufferen for alle brukere av tjenesten.""")
 if st.sidebar.button("Tøm bufferen", type="primary"):
     st.experimental_memo.clear()
     st.runtime.legacy_caching.clear_cache()
