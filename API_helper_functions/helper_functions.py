@@ -4,7 +4,7 @@ import streamlit as st
 import re
 
 
-def eksporttabeller(url="https://api.udir-statistikkbanken.no/api/rest/v2/Eksport/"):
+def eksporttabeller(url="https://api.statistikkbanken.udir.no//api/rest/v2/Eksport/"):
     """ Spørring går mot domenenavn + /api/rapportering/rest/v2/Eksport """
     
     url      = url
@@ -17,7 +17,7 @@ def eksporttabeller(url="https://api.udir-statistikkbanken.no/api/rest/v2/Ekspor
     return response
 
 
-def eksport_format(url="https://api.udir-statistikkbanken.no/api/rest/v2/Eksport/format"):
+def eksport_format(url="https://api.statistikkbanken.udir.no/api/rest/v2/Eksport/format"):
     """ Spørring går mot domenenavn + /api/rapportering/rest/v2/Eksport/format"""
     
     url      = url
@@ -30,7 +30,7 @@ def eksport_format(url="https://api.udir-statistikkbanken.no/api/rest/v2/Eksport
     return response
 
 
-def eksport_filtere(url="https://api.udir-statistikkbanken.no/api/rest/v2/Eksport/152/filterSpec",
+def eksport_filtere(url="https://api.statistikkbanken.udir.no/api/rest/v2/Eksport/152/filterSpec",
                     tabell=145):
     """ Spørring går mot domenenavn + /api/rapportering/rest/v2/Eksport/{tabell}/filterSpec"""
     
@@ -49,7 +49,7 @@ def eksport_filtere(url="https://api.udir-statistikkbanken.no/api/rest/v2/Ekspor
     return response
 
 
-def eksport_filterverdier(url="https://api.udir-statistikkbanken.no/api/rest/v2/Eksport/152/filterVerdier", 
+def eksport_filterverdier(url="https://api.statistikkbanken.udir.no/api/rest/v2/Eksport/152/filterVerdier", 
                           tabell=145):
     """ Spørring går mot domenenavn + /api/rapportering/rest/v2/Eksport/{tabell}/filterVerdier """
     
@@ -68,7 +68,7 @@ def eksport_filterverdier(url="https://api.udir-statistikkbanken.no/api/rest/v2/
     return response
 
 
-def eksport_filterstatus(url="https://api.udir-statistikkbanken.no/api/rest/v2/Eksport/152/filterStatus", 
+def eksport_filterstatus(url="https://api.statistikkbanken.udir.no/api/rest/v2/Eksport/152/filterStatus", 
                          tabell=145,
                          filterId="EierformID", 
                          filtre="EierformID(-10)"):
@@ -93,7 +93,7 @@ def eksport_filterstatus(url="https://api.udir-statistikkbanken.no/api/rest/v2/E
     return response
 
 
-def eksport_rader_sider(url="https://api.udir-statistikkbanken.no/api/rest/v2/Eksport/148/sideData", 
+def eksport_rader_sider(url="https://api.statistikkbanken.udir.no/api/rest/v2/Eksport/148/sideData", 
                         tabell=145,
                         query="EierformID(-10)_Fylkekode(42)_KjoennID(-10)_Kommunekode(4203)_Nasjonaltkode(I)_Organisasjonsnummer(974622882)_TidID(202101)_TrinnID(6_9)"
                         ):
@@ -115,7 +115,7 @@ def eksport_rader_sider(url="https://api.udir-statistikkbanken.no/api/rest/v2/Ek
     return response
 
 
-def eksport_data(url="https://api.udir-statistikkbanken.no/api/rest/v2/Eksport/148/data", 
+def eksport_data(url="https://api.statistikkbanken.udir.no/api/rest/v2/Eksport/148/data", 
                  tabell=145,
                  query="EierformID(-10)_Fylkekode(42)_KjoennID(-10)_Kommunekode(4203)_Nasjonaltkode(I)_Organisasjonsnummer(974622882)_TidID(202112)_TrinnID(6_9)", 
                  format=0,
