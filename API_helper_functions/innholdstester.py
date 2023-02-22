@@ -98,7 +98,7 @@ def kolonne_test(uu:str):
     
     for tabell, dict_key in zip(tabeller, kolonne_dict.keys()):
 
-        url   = "https://api.udir-statistikkbanken.no/api/rest/v2/Eksport/{148}/data"   
+        url   = "https://api.statistikkbanken.udir.no/api/rest/v2/Eksport/{148}/data"   
         query = "EierformID(-10)_EnhetNivaa(1)_Nasjonaltkode(I)_TidID(202112)"      # "EierformID(-10)_EnhetNivaa(1)_Nasjonaltkode(I)_TidID(202112)"
         tabell = tabell
         resultat = eksport_data(url, query=query, tabell = tabell)
@@ -133,7 +133,7 @@ def kolonne_test_print(test_liste):
 
 @st.experimental_memo()
 def irene_prikking(uu:str):
-    url   = "https://api.udir-statistikkbanken.no/api/rest/v2/Eksport/149/data"   
+    url   = "https://api.statistikkbanken.udir.no/api/rest/v2/Eksport/149/data"   
     query = "Eierformkode(3)_EierformNivaa(1)_EnhetID(30058)_EnhetNivaa(4)_GruppeNivaa(0)_KjoennNivaa(0)_KommuneKode(5001)_SpoersmaalID(456)_TemaNivaa(1)_TidID(202112)_TrinnKode(10)" # _SkoleEierNivaa(0)_ [FAIL] _TrinnKode(10) [NONE] Uprikket IS NULL  EierformKode(3)_ [NONE]
 
     resultat = eksport_data(url=url, query=query)
