@@ -1,6 +1,6 @@
 # Streamlit-API-App
 
-![Picture of App](https://github.com/enraarne/Streamlit-API-App/img/Skjermbilde_testapp.PNG?raw=true)
+![Picture of App](img/Skjermbilde_testapp.PNG?raw=true)
 
 This Streamlit app provides testingtools for Udirs Open API
 
